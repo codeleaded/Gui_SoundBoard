@@ -2,10 +2,9 @@
 #include "/home/codeleaded/System/Static/Library/Random.h"
 #include "/home/codeleaded/System/Static/Library/SoundBoard.h"
 
-double FrequencyOutput = 220.0;
 
-double SoundBoard_Function(double t){
-	double out = 0.9 * sin(FrequencyOutput * 2.0 * F64_PI * t);
+double SoundBoard_Function(double t,double f){
+	double out = 0.5 * sin(f * 2.0 * F64_PI * t);
 	//double out = 0.5 * sin((FrequencyOutput * 2.0 * F64_PI * fmod(t,FrequencyOutput * 2.0 * F64_PI)));
 	return out;
 	//if(out>0.0f)	return 0.5;
@@ -31,49 +30,30 @@ void Update(AlxWindow* w){
 	double OctaveBaseFrequency = 110.0;
 	double Root12thOf2 = pow(2.0,1.0 / 12.0);
 	
-	if(Stroke(ALX_KEY_Q).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,0);
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_W).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,1);	
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_E).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,2);	
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_R).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,3);	
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_T).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,4);	
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_Z).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,5);	
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_U).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,6);	
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_I).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,7);	
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_O).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,8);	
-		SoundBoard_Node(&sb,1);
-	}else if(Stroke(ALX_KEY_P).PRESSED){
-		FrequencyOutput = OctaveBaseFrequency * pow(Root12thOf2,9);	
-		SoundBoard_Node(&sb,1);
+	if(Stroke(ALX_KEY_Q).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,0));
+	}else if(Stroke(ALX_KEY_W).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,1));
+	}else if(Stroke(ALX_KEY_E).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,2));
+	}else if(Stroke(ALX_KEY_R).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,3));
+	}else if(Stroke(ALX_KEY_T).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,4));
+	}else if(Stroke(ALX_KEY_Z).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,5));
+	}else if(Stroke(ALX_KEY_U).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,6));
+	}else if(Stroke(ALX_KEY_I).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,7));
+	}else if(Stroke(ALX_KEY_O).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,8));
+	}else if(Stroke(ALX_KEY_P).DOWN){
+		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,9));
+	}else{
+		SoundBoard_Node(&sb,SOUNDBOARD_NONODE,sb.freq);
 	}
-	
-	if(
-		Stroke(ALX_KEY_Q).RELEASED || Stroke(ALX_KEY_W).RELEASED ||
-		Stroke(ALX_KEY_E).RELEASED || Stroke(ALX_KEY_R).RELEASED ||
-		Stroke(ALX_KEY_T).RELEASED || Stroke(ALX_KEY_Z).RELEASED ||
-		Stroke(ALX_KEY_U).RELEASED || Stroke(ALX_KEY_I).RELEASED ||
-		Stroke(ALX_KEY_O).RELEASED || Stroke(ALX_KEY_P).RELEASED
-	){
-		FrequencyOutput = 0.0;	
-		SoundBoard_Node(&sb,SOUNDBOARD_NONODE);
-	}					
-	
+
 	Clear(BLACK);
 
 	// String str = String_Format("P: X: %f, Y: %f",p.x,p.y);
