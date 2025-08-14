@@ -30,35 +30,47 @@ void Update(AlxWindow* w){
 	double OctaveBaseFrequency = 110.0;
 	double Root12thOf2 = pow(2.0,1.0 / 12.0);
 	
-	if(Stroke(ALX_KEY_Q).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,0));
-	}else if(Stroke(ALX_KEY_W).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,1));
-	}else if(Stroke(ALX_KEY_E).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,2));
-	}else if(Stroke(ALX_KEY_R).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,3));
-	}else if(Stroke(ALX_KEY_T).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,4));
-	}else if(Stroke(ALX_KEY_Z).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,5));
-	}else if(Stroke(ALX_KEY_U).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,6));
-	}else if(Stroke(ALX_KEY_I).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,7));
-	}else if(Stroke(ALX_KEY_O).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,8));
-	}else if(Stroke(ALX_KEY_P).DOWN){
-		SoundBoard_Node(&sb,1,OctaveBaseFrequency * pow(Root12thOf2,9));
-	}else{
-		SoundBoard_Node(&sb,SOUNDBOARD_NONODE,sb.freq);
+	int SoundBoard_Strokes[] = {
+		ALX_KEY_Q,ALX_KEY_W,ALX_KEY_E,ALX_KEY_R,ALX_KEY_T,ALX_KEY_Z,ALX_KEY_U,ALX_KEY_I,ALX_KEY_O,ALX_KEY_P,
+		ALX_KEY_A,ALX_KEY_S,ALX_KEY_D,ALX_KEY_F,ALX_KEY_G,ALX_KEY_H,ALX_KEY_J,ALX_KEY_K,ALX_KEY_L,
+		ALX_KEY_Y,ALX_KEY_X,ALX_KEY_C,ALX_KEY_V,ALX_KEY_B,ALX_KEY_N,ALX_KEY_M
+	};
+
+	char setter = 0;
+	for(int i = 0;i<26;i++){
+		if(Stroke(SoundBoard_Strokes[i]).DOWN){
+			SoundBoard_Node(&sb,1 + i,OctaveBaseFrequency * pow(Root12thOf2,i));
+			setter = 1;
+		}
 	}
+	if(!setter) SoundBoard_Node(&sb,0,sb.freq);
 
 	Clear(BLACK);
 
-	// String str = String_Format("P: X: %f, Y: %f",p.x,p.y);
-	// RenderCStrSize(str.Memory,str.size,0.0f,0.0f,WHITE);
-	// String_Free(&str);
+
+	const int x = 150;
+	const int y = 200;
+	const int width = 150;
+	const int height = 300;
+
+	for(int i = 1;i<=26;i++){
+		float xpos = x;
+		float ypos = y;
+		if(i<=10) 		xpos += i * width;
+		else if(i<=19){
+			xpos += (i - 10) * width;
+			ypos += height;
+		}else{
+			xpos += (i - 19) * width;
+			ypos += height << 1;
+		}
+
+		RenderRect(xpos,ypos,width - 5,height - 5,i == sb.node ? GRAY : WHITE);
+
+		String str = String_Format("%d",i);
+		RenderCStrSize(str.Memory,str.size,xpos + ((width - GetAlxFont()->CharSizeX) >> 1),ypos + ((height - GetAlxFont()->CharSizeY) >> 1),WHITE);
+		String_Free(&str);
+	}
 }
 
 void Delete(AlxWindow* w){
