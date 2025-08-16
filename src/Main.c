@@ -3,21 +3,53 @@
 #include "/home/codeleaded/System/Static/Library/SoundBoard.h"
 
 
+// double SoundBoard_Function(double t,double f){
+// 	double out = 0.5 * sin(f * 2.0 * F64_PI * t);
+// 	double out = 0.5 * sin((FrequencyOutput * 2.0 * F64_PI * fmod(t,FrequencyOutput * 2.0 * F64_PI)));
+// 	return out;
+// 	if(out>0.0f)	return 0.5;
+// 	else 			return -0.5;
+// }
+
 double SoundBoard_Function(double t,double f){
-	double out = 0.5 * sin(f * 2.0 * F64_PI * t);
-	//double out = 0.5 * sin((FrequencyOutput * 2.0 * F64_PI * fmod(t,FrequencyOutput * 2.0 * F64_PI)));
-	return out;
-	//if(out>0.0f)	return 0.5;
-	//else 			return -0.5;
+	return 0.5 * sin(f * 2.0 * F64_PI * t);
 }
+
 
 SoundBoard sb;
 
 void Setup(AlxWindow* w){
-	sb = SoundBoard_New(2,SOUNDBOARD_BITS_PER_SAMPLE,SOUNDBOARD_SAMPLE_RATE);
+	const double OctaveBaseFrequency = 110.0;
+	const double Root12thOf2 = pow(2.0,1.0 / 12.0);
 
-	SoundBoard_SetFunction(&sb,0,SoundBoard_Function);
-	SoundBoard_SetFunction(&sb,1,SoundBoard_Function);
+	sb = SoundBoard_Make(2,SOUNDBOARD_BITS_PER_SAMPLE,SOUNDBOARD_SAMPLE_RATE,(SoundNode[]){
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,0),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,1),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,2),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,3),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,4),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,5),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,6),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,7),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,8),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,9),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,10),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,11),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,12),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,13),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,14),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,15),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,16),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,17),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,18),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,19),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,20),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,21),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,22),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,23),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,24),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_Null()
+	});
 	
 	short buffer[1024 * 2];
     memset(buffer,0,sizeof(buffer));
@@ -39,13 +71,13 @@ void Update(AlxWindow* w){
 	char setter = 0;
 	for(int i = 0;i<26;i++){
 		if(Stroke(SoundBoard_Strokes[i]).DOWN){
-			SoundBoard_Node(&sb,1 + i,OctaveBaseFrequency * pow(Root12thOf2,i));
-			setter = 1;
+			SoundBoard_Node(&sb,i,1.0);
+		}else{
+			SoundBoard_Node(&sb,i,0.0);
 		}
 	}
-	if(!setter) SoundBoard_Node(&sb,0,sb.freq);
 
-	Clear(BLACK);
+	Clear(DARK_BLUE);
 
 
 	const int x = 150;
@@ -53,7 +85,9 @@ void Update(AlxWindow* w){
 	const int width = 150;
 	const int height = 300;
 
-	for(int i = 1;i<=26;i++){
+	for(int i = 0;i<sb.nodes.size;i++){
+		SoundNode* sn = (SoundNode*)Vector_Get(&sb.nodes,i);
+		
 		float xpos = x;
 		float ypos = y;
 		if(i<=10) 		xpos += i * width;
@@ -65,7 +99,7 @@ void Update(AlxWindow* w){
 			ypos += height << 1;
 		}
 
-		RenderRect(xpos,ypos,width - 5,height - 5,i == sb.node ? GRAY : WHITE);
+		RenderRect(xpos,ypos,width - 5,height - 5,Pixel_toRGBA((float)sn->state,(float)sn->state,(float)sn->state,1.0f));
 
 		String str = String_Format("%d",i);
 		RenderCStrSize(str.Memory,str.size,xpos + ((width - GetAlxFont()->CharSizeX) >> 1),ypos + ((height - GetAlxFont()->CharSizeY) >> 1),WHITE);
