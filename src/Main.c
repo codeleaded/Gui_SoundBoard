@@ -23,31 +23,32 @@ void Setup(AlxWindow* w){
 	const double Root12thOf2 = pow(2.0,1.0 / 12.0);
 
 	sb = SoundBoard_Make(2,SOUNDBOARD_BITS_PER_SAMPLE,SOUNDBOARD_SAMPLE_RATE,(SoundNode[]){
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,0),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,1),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,2),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,3),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,4),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,5),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,6),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,7),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,8),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,9),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,10),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,11),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,12),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,13),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,14),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,15),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,16),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,17),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,18),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,19),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,20),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,21),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,22),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,23),(SoundFunc){ 0.0,SoundBoard_Function }),
-		SoundNode_New(0.0,0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,24),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,0),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,1),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,2),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,3),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,4),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,5),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,6),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,7),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,8),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,9),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,10),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,11),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,12),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,13),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,14),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,15),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,16),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,17),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,18),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,19),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,20),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,21),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,22),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,23),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,24),(SoundFunc){ 0.0,SoundBoard_Function }),
+		SoundNode_New(0.0,0.0,OctaveBaseFrequency * pow(Root12thOf2,25),(SoundFunc){ 0.0,SoundBoard_Function }),
 		SoundNode_Null()
 	});
 	
@@ -90,8 +91,9 @@ void Update(AlxWindow* w){
 		
 		float xpos = x;
 		float ypos = y;
-		if(i<=10) 		xpos += i * width;
-		else if(i<=19){
+		if(i<10)
+			xpos += i * width;
+		else if(i<19){
 			xpos += (i - 10) * width;
 			ypos += height;
 		}else{
